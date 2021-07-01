@@ -15,6 +15,7 @@
 
     <!-- Styles -->
     <link href="{{ MIX('css/app.css') }}" rel="stylesheet">
+    @livewireStyles
 </head>
 
 <body class="bg-gray-100 h-screen antialiased leading-none font-sans">
@@ -36,8 +37,9 @@
                     @else
                         <span>{{ Auth::user()->name }}</span>
 
-                        <a href="{{ route('logout') }}" class="no-underline hover:underline" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                        <a href="{{ route('logout') }}" class="no-underline hover:underline"
+                            onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                             {{ csrf_field() }}
                         </form>
@@ -48,6 +50,7 @@
 
         @yield('content')
     </div>
+    @livewireScripts
 </body>
 
 </html>
