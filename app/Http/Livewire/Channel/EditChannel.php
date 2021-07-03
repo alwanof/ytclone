@@ -6,6 +6,7 @@ use App\Models\Channel;
 use Livewire\Component;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\WithFileUploads;
+use Intervention\Image\Facades\Image;
 
 class EditChannel extends Component
 {
@@ -42,9 +43,20 @@ class EditChannel extends Component
             'description' => $this->channel->description
         ]);
         if ($this->logo) {
-            $logo = $this->logo->storeAs('logos', $this->channel->uid . '.png');
+            $logo = $this->logo->storeAs('public/logos', $this->channel->uid . '.png');
+            //$imageImage = explode('/', $logo)[1];
+            $fileName = basename($logo);
+            //resize and convert to png
+            $img = Image::make(storage_path() . '/app/'  . $logo)
+                ->encode('png')
+                ->fit(80, 80, function ($constraint) {
+                    $constraint->upsize();
+                })->save();
+
+            //update file path in the db
+
             $this->channel->update([
-                'image' => $logo
+                'image' => $fileName
             ]);
         }
 

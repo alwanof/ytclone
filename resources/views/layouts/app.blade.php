@@ -12,6 +12,11 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- materialize -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- alphineJS -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+
 
     <!-- Styles -->
     <link href="{{ MIX('css/app.css') }}" rel="stylesheet">
@@ -27,7 +32,7 @@
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
-                <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
+                <nav class="flex space-x-4 text-gray-300 text-sm sm:text-base items-center">
                     @guest
                         <a class="no-underline hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
                         @if (Route::has('register'))
@@ -35,6 +40,10 @@
                                 href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     @else
+
+                        <a href="{{ route('video.create', Auth::user()->channel) }}" class="no-underline">
+                            <i class="large material-icons text-orange-300">video_call</i>
+                        </a>
                         <span>{{ Auth::user()->name }}</span>
                         <a href="{{ route('channel.edit', Auth::user()->channel->slug) }}"
                             class="no-underline hover:underline">
@@ -43,7 +52,7 @@
 
                         <a href="{{ route('logout') }}" class="no-underline hover:underline"
                             onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                                                                                                                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                             {{ csrf_field() }}
                         </form>

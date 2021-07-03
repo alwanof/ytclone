@@ -23,4 +23,14 @@ class Channel extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get all of the videos for the Channel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
 }

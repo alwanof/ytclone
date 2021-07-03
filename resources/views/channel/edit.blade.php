@@ -13,8 +13,13 @@
 
             <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
 
-                <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+                <header
+                    class="flex items-center font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+                    @if ($channel->image)
+                        <img src="{{ asset('storage/logos/' . $channel->image) }}" class="h-10 rounded-full mr-2" alt="">
+                    @endif
                     Edit Channel
+
                 </header>
 
                 <div class="w-full p-6">

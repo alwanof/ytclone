@@ -21,7 +21,7 @@ class CreateChannelsTable extends Migration
             $table->string('uid');
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->cascade('delete');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
