@@ -36,10 +36,14 @@
                         @endif
                     @else
                         <span>{{ Auth::user()->name }}</span>
+                        <a href="{{ route('channel.edit', Auth::user()->channel->slug) }}"
+                            class="no-underline hover:underline">
+                            {{ Auth::user()->channel->name }}
+                        </a>
 
                         <a href="{{ route('logout') }}" class="no-underline hover:underline"
                             onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                             {{ csrf_field() }}
                         </form>
